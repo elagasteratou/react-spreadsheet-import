@@ -1,7 +1,7 @@
-import type { RsiProps } from "../types"
+import type { Field, RsiProps } from "../types"
 import { defaultRSIProps } from "../ReactSpreadsheetImport"
 
-const fields = [
+const fields: Field<string>[]= [
   {
     label: "Name",
     key: "name",
@@ -22,7 +22,7 @@ const fields = [
     key: "surname",
     alternateMatches: ["second name", "last name", "last"],
     fieldType: {
-      type: "input",
+      type: ""
     },
     example: "McDonald",
     validations: [
