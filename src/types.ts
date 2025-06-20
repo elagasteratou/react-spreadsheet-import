@@ -19,26 +19,45 @@ export type RsiProps<T extends string> = {
   fields: Fields<T>
   /** 
   * Runs after file upload step, receives and returns raw sheet data 
+  * @param data Raw data from the uploaded file
+  * @returns Modified raw data or Promise
   */
   uploadStepHook?: (data: RawData[]) => Promise<RawData[]>
   /** 
   * Runs after header selection step, receives and returns raw sheet data 
+  * @param headerValues Header values selected by user
+  * @param data Raw data from the uploaded file
+  * @returns Modified header values and data or Promise
   */
   selectHeaderStepHook?: (headerValues: RawData, data: RawData[]) => Promise<{ headerValues: RawData; data: RawData[] }>
   /** 
   * Runs once before validation step, used for data mutations and if you want to change how columns were matched 
+  * @param table All rows in the current table
+  * @param rawData Raw data from the uploaded file
+  * @param columns Columns that were matched in the previous step
+  * @returns Modified table data or Promise
   */
   matchColumnsStepHook?: (table: Data<T>[], rawData: RawData[], columns: Columns<T>) => Promise<Data<T>[]>
   /** 
   * Runs after column matching and on entry change 
+  * @param row The current row being processed
+  * @param addError Function to add validation errors to specific fields. Has to be called with field key and error object.
+  * @param table All rows in the current table
+  * @returns Modified row data or Promise 
   */
   rowHook?: RowHook<T>
   /** 
   * Runs after column matching and on entry change 
+  * @param table All rows in the current table
+  * @param addError Function to add validation errors to specific fields. Has to be called with row index, field key and error object.
+  * @returns Modified table data or Promise
   */
   tableHook?: TableHook<T>
   /** 
   * Function called after user finishes the flow. You can return a promise that will be awaited. 
+  * @param data Validated and processed data from the flow
+  * @param file The file that was uploaded by the user
+  * @returns void or Promise
   */
   onSubmit: (data: Result<T>, file: File) => void | Promise<any>
   /** 
