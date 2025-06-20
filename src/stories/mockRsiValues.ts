@@ -7,7 +7,7 @@ const fields = [
     key: "name",
     alternateMatches: ["first name", "first"],
     fieldType: {
-      type: "input"
+      type: "input",
     },
     example: "Stephanie",
     validations: [
@@ -22,7 +22,7 @@ const fields = [
     key: "surname",
     alternateMatches: ["second name", "last name", "last"],
     fieldType: {
-      type: "input"
+      type: "input",
     },
     example: "McDonald",
     validations: [
